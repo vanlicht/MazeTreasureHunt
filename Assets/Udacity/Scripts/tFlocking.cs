@@ -6,6 +6,7 @@ public class tFlocking : MonoBehaviour
     public GameObject flockObject;
     public Vector2 RandomScale = new Vector2(15f, 40f);
     private float randomRange;
+    public bool isHardSurface = false;
 
     public float radius						= 8.0f;
 	public bool draw_alignment				= true;
@@ -155,14 +156,19 @@ public class tFlocking : MonoBehaviour
             current_object.transform.position += current_object.transform.forward * velocity;
 
             //check to see if it is out of bounds, or if it goes under the ground
-            if (Vector3.Magnitude(current_object.transform.position) > bounds || current_object.transform.position.y <0.5f)
+            if (Vector3.Magnitude(current_object.transform.position) > bounds || current_object.transform.position.y <0.5f || current_object.tag == "FishContact")
 			{
                 //if so, point it back inside and move it a bit, too
                 current_object.transform.forward 	= -1 * Vector3.Normalize((current_object.transform.forward + new_direction));
-
+                isHardSurface = false;
                 //T: This line causes fish to flip and freeze when velocity is slow and reaches the bound radius
 				//current_object.transform.position 	= Vector3.Lerp(current_object.transform.position, Vector3.ClampMagnitude(current_object.transform.position, bounds)-current_object.transform.forward, velocity);
 			}
+
+            //if(current_object.tag == "FishContact")
+            //{
+            //    current_object.GetComponentInChildren<SkinnedMeshRenderer>().material.color = new Vector4(1f, 0f, 0f, 1f);
+            //}
 		}
 
 		SetColor(current_object);
@@ -197,9 +203,14 @@ public class tFlocking : MonoBehaviour
 		//game_object.GetComponent<MeshRenderer>().material.color = in_range_of_selection ? game_object == _selection ? _selection_color : _neighborhood_color : _default_color;
 	}
 
+    public void HardSurfaceDetection()
+    {
+        isHardSurface = true;
+    }
 
-	#if (UNITY_EDITOR)
-	void UpdateSelection ()
+
+#if (UNITY_EDITOR)
+    void UpdateSelection ()
 	{
 		if(UnityEditor.Selection.activeGameObject != _selection)
 		{	
@@ -225,4 +236,6 @@ public class tFlocking : MonoBehaviour
 		}
 	}
 	#endif
+
+    
 }
