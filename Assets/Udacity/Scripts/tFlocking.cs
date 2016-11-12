@@ -5,6 +5,7 @@ public class tFlocking : MonoBehaviour
 {
     public GameObject flockObject;
     public Vector2 RandomScale = new Vector2(15f, 40f);
+    public float groundHeight = 0f;
     private float randomRange;
 
     public float radius						= 8.0f;
@@ -60,7 +61,8 @@ public class tFlocking : MonoBehaviour
 
             //Create fish position randomly but all above the ground
             //_flock[i].transform.position 		= Random.insideUnitSphere * bounds;
-            _flock[i].transform.position = new Vector3(Random.onUnitSphere.x, Mathf.Abs(Random.onUnitSphere.y), Random.onUnitSphere.z) * (bounds/2f);
+
+            _flock[i].transform.position = new Vector3(Random.onUnitSphere.x * (bounds / 2f), Mathf.Max(Mathf.Abs(Random.onUnitSphere.y) * (bounds / 2f), groundHeight + 0.5f), Random.onUnitSphere.z * (bounds / 2f));
 
             _flock[i].transform.localRotation 	= Random.rotation;
 			_flock[i].transform.parent			= gameObject.transform;
@@ -155,7 +157,7 @@ public class tFlocking : MonoBehaviour
             current_object.transform.position += current_object.transform.forward * velocity;
 
             //check to see if it is out of bounds, or if it goes under the ground
-            if (Vector3.Magnitude(current_object.transform.position) > bounds || current_object.transform.position.y <0.5f)
+            if (Vector3.Magnitude(current_object.transform.position) > bounds || current_object.transform.position.y < groundHeight)
 			{
                 //if so, point it back inside and move it a bit, too
                 current_object.transform.forward 	= -1 * Vector3.Normalize((current_object.transform.forward + new_direction));
