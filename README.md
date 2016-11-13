@@ -1,5 +1,13 @@
 Name: Thomas Huang
-Estimated Time: 40 hours
+Estimated Time: 40-50 hours
+
+One thing I liked:
+	- It's good assignment challeng to bring different components together for VR design / experience.
+
+One thing that's challenging:
+	- So far no systematic approach of checking performance / optimization of the content when putting into mobile phone, or how to evaluate whether certain script/ shader/ model tax heavily on the system. 
+
+Production Notes:
 
 1. Set Dressing:
 	- Designed and added models, and layout the maze:
@@ -13,7 +21,10 @@ Estimated Time: 40 hours
 	- Has rotation animation when idle, and instantly disappears when being clicked, while poof and sound effect are triggered at the same time.
 
 4. Key:
-	- Has animation when idle, and has 2 states: (1) when being clicked, and (2) when used to open the door.
+	- Bobs and rotates when idle.
+	- When clicked, the key flies towards the door and unlocks the door, so the door can be opened when clicked.
+	- Activate Poofs.
+	- After being clicked, the key disappears.
 
 5. Waypoint:
 	- Modified the teleportation behaviour when being clicked. Camera travels to position, instead of just snapping to it.

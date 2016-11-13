@@ -54,6 +54,9 @@ public class Key : MonoBehaviour
 
             //Scale Key
             this.transform.localScale = new Vector3(30f, 30f, 30f);
+
+            //Set the Door to be able to open if clicked
+            Door.hasKey = true;
         }
         else
         {
@@ -62,19 +65,19 @@ public class Key : MonoBehaviour
         
     }
 
-    public void OnKeyUsed()
-    {
+    //public void OnKeyUsed()
+    //{
 
-        if (keyAct == 2)
-        {
-            // Instatiate the KeyPoof Prefab where this key is located
-            // Make sure the poof animates vertically
-            //Instantiate(KeyPoofPrefab, this.transform, false);
-            Instantiate(KeyPoofPrefab, this.transform.position, Quaternion.Euler(new Vector3(-90f, 0f, 0f)));
-            StartCoroutine(IKeyOpen(1f));
-        }
+    //    if (keyAct == 2)
+    //    {
+    //        // Instatiate the KeyPoof Prefab where this key is located
+    //        // Make sure the poof animates vertically
+    //        //Instantiate(KeyPoofPrefab, this.transform, false);
+    //        Instantiate(KeyPoofPrefab, this.transform.position, Quaternion.Euler(new Vector3(-90f, 0f, 0f)));
+    //        StartCoroutine(IKeyOpen(1f));
+    //    }
         
-    }
+    //}
 
     private IEnumerator IKeySelect(float keyTravelTime)
     {
@@ -94,20 +97,22 @@ public class Key : MonoBehaviour
             t += Time.deltaTime;
         } while (t < keyTravelTime);
 
+        //Destroy Key
+        Destroy(this.gameObject, 0.1f);
         yield break;
     }
 
-    private IEnumerator IKeyOpen(float keyTravelTime)
-    {
-        Instantiate(KeyPoofPrefab, this.transform.position, Quaternion.Euler(new Vector3(-90f, 0f, 0f)));
-        // Call the Unlock() method on the Door
-        Door.Unlock();
-        // Destroy the key. Check the Unity documentation on how to use Destroy
-        Destroy(this.gameObject, 0.1f);
+    //private IEnumerator IKeyOpen(float keyTravelTime)
+    //{
+    //    Instantiate(KeyPoofPrefab, this.transform.position, Quaternion.Euler(new Vector3(-90f, 0f, 0f)));
+    //    // Call the Unlock() method on the Door
+    //    Door.Unlock();
+    //    // Destroy the key. Check the Unity documentation on how to use Destroy
+    //    Destroy(this.gameObject, 0.1f);
 
         
-        yield break;
-    }
+    //    yield break;
+    //}
 
 
 }

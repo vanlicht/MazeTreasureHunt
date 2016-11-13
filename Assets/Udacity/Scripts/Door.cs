@@ -6,6 +6,7 @@ public class Door : MonoBehaviour
 {
     // Create a boolean value called "locked" that can be checked in Update() 
     public bool locked = false;
+    public bool hasKey = false;
     public float speed = 1f;
     Vector3 closedPosition;
     Vector3 openPosition;
@@ -37,5 +38,12 @@ public class Door : MonoBehaviour
         startTime = Time.time;
     }
 
+    public void ClickToOpenDoor()
+    {
+        if(hasKey == true)
+        {
+            Unlock();
+        }
+    }
     
 }
