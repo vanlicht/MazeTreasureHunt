@@ -1,12 +1,6 @@
 Name: Thomas Huang
 Estimated Time: 40-50 hours
 
-One thing I liked:
-	- It's good assignment challeng to bring different components together for VR design / experience.
-
-One thing that's challenging:
-	- So far no systematic approach of checking performance / optimization of the content when putting into mobile phone, or how to evaluate whether certain script/ shader/ model tax heavily on the system. 
-
 Production Notes:
 
 1. Set Dressing:
@@ -44,8 +38,6 @@ Production Notes:
 		- Flock Object: field to assign fish fbx
 		- Ramdon Scale: to randomize fish scale
 		- Ground height: to set where the ground is, so first when fish flock were instantiated, all of them would stay above the grond value and wouldn't travel underneath / pass the set ground value, so the fish won't travel underneath the ground.
-
-	- Question: I am trying to make the fish flock able to respond to the walls so they won't swim through the walls. I tried Collider trigger but it didn't work out well. Would appreciate if there is good suggestion how to acchieve that effect.
 
 10. Optimization:
 	- I tried to optimize the scene to acceptable performance. It seems acceptable when added only up to some 30 fish in the scene. Though, I would like to learn more efficient way of optimization and make good use of profiler or other methods.
